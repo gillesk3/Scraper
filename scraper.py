@@ -1,5 +1,4 @@
 import scrapy
-from scrapy.crawler import CrawlerProcess
 from scrapy.loader import ItemLoader
 from items import Chapter
 
@@ -43,13 +42,3 @@ class Serial(scrapy.Spider):
         # next_page_url = response.xpath('//li[@class="next"]/a/@href').extract_first()
         # if next_page_url is not None:
         #     yield scrapy.Request(response.urljoin(next_page_url))
-
-# if __name__ == "__main__":
-process = CrawlerProcess({
-    'USER_AGENT': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)',
-    'ITEM_PIPELINES' : {
-    'pipelines.HTMLWriterPipeline': 800}
-})
-
-process.crawl(Serial)
-process.start() # the script will block here until the crawling is finished
