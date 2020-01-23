@@ -6,4 +6,4 @@ class Chapter(scrapy.Item):
     Number = scrapy.Field()
     Title = scrapy.Field(output_processor=TakeFirst(),)
     Content = scrapy.Field()
-    NextPage = scrapy.Field()
+    NextPage = scrapy.Field(output_processor=TakeFirst(),)

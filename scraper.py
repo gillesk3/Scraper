@@ -9,6 +9,7 @@ class Serial(scrapy.Spider):
     start_urls = [
         'https://practicalguidetoevil.wordpress.com/2015/03/25/prologue/',
     ]
+    chapterNumber = 0
 
 
 
@@ -17,17 +18,20 @@ class Serial(scrapy.Spider):
         chapter = ItemLoader(item=Chapter(), response=response)
         chapter.add_xpath('Title', '//h1[@class="entry-title"]/text()')
         chapter.add_xpath('Content', '//div[@class="entry-content"]')
-        chapter.add_xpath('NextPage','//div[@class="nav-next"]/a/@href')
+        chapter.add_xpath('NextPage','//div[@class="nav-nextt"]/a/@href')
+        chapter.add_value('Number',self.chapterNumber)
         chapter = chapter.load_item()
+        yield chapter
+        if 'NextPage' in chapter:
+            print('We have a page')
+
         # print(chapter)
-        print(chapter['Title'])
+
 
         # title = response.xpath('//h1[@class="entry-title"]/text()').get()
         # content= res
 
-        print('test')
 
-        print('********************TEST****************')
         #
         # for quote in response.xpath('//div[@class="quote"]'):
         #     yield {
