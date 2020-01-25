@@ -7,10 +7,12 @@ class HTMLItemExporter(BaseItemExporter):
 
 
     def predendToFile(self,line):
-            self.file.seek(0, 0)
-            content = self.file.read()
-            self.file.seek(0, 0)
-            self.file.write(line.rstrip('\r\n') + '\n' + content)
+        line =  (line.rstrip('\r\n') + '\n').encode('utf-8')
+        self.file.seek(0, 0)
+        content = self.file.read()
+        self.file.seek(0, 0)
+        content = line + content
+        self.file.write(content)
 
     def __init__(self,filename= None,**kwargs):
         self.settings = Settings()
@@ -19,7 +21,7 @@ class HTMLItemExporter(BaseItemExporter):
         else: self.filename = self.settings.getFilename()
 
     def start_exporting(self):
-        self.file =  open(self.filename, 'w+')
+        self.file =  open(self.filename, 'wb+')
         logging.debug("opening file")
 
     def finish_exporting(self,spider):
@@ -28,5 +30,5 @@ class HTMLItemExporter(BaseItemExporter):
         logging.debug("closing file")
 
     def export_item(self, item):
-        self.file.write(item['Header'])
-        self.file.write(item['Content'])
+        self.file.write(item['Header'].encode('utf-8'))
+        self.file.write(item['Content'].encode('utf-8'))
