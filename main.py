@@ -23,4 +23,4 @@ convertQuery = 'ebook-convert {} {} --authors "{}" --title "{}" --max-toc-links 
 process.crawl(Serial)
 process.start() # the script will block here until the crawling is finished
 logging.debug(convertQuery)
-os.system(convertQuery)
+# os.system(convertQuery)
