@@ -1,5 +1,5 @@
 from scrapy.crawler import CrawlerProcess
-from scraper import Serial
+from scraper import EvilSpider
 from util import Settings
 import os
 import logging
@@ -13,14 +13,14 @@ process = CrawlerProcess({
 
 settings = Settings()
 htmlFile = settings.getFilename()
-mobiFile = htmlFile.split('.')[0] + ".mobi"
+mobiFile = './Books/'+  htmlFile.split('.')[0] + ".mobi"
 authors = settings.getAuthors()
 title = settings.getTitle()
 
 convertQuery = 'ebook-convert {} {} --authors "{}" --title "{}" --max-toc-links 500'.format(htmlFile, mobiFile, authors, title)
 
 
-process.crawl(Serial)
-process.start() # the script will block here until the crawling is finished
-logging.debug(convertQuery)
-# os.system(convertQuery)
+# process.crawl(EvilSpider)
+# process.start() # the script will block here until the crawling is finished
+# logging.debug(convertQuery)
+os.system(convertQuery)

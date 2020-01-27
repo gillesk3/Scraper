@@ -18,4 +18,4 @@ class HTMLWriterPipeline(object):
             raise DropItem("Not content found %s" % item)
         else:
             self.exporter.export_item(item)
-            # return item
+            return item

@@ -6,7 +6,7 @@ import logging
 
 
 
-class Serial(scrapy.Spider):
+class EvilSpider(scrapy.Spider):
     name = 'serial'
     settings = Settings()
     start_urls = [
@@ -16,13 +16,15 @@ class Serial(scrapy.Spider):
     chapterNumber = 0
     tableOfContents = "<h1>Table of Contents</h1>"
 
-
-
     def parse(self, response):
         chapter = ItemLoader(item=Chapter(), response=response)
         chapter.add_xpath('Title', '//h1[@class="entry-title"]/text()')
         chapter.add_xpath('Content', '//div[@class="entry-content"]/p')
         chapter.add_xpath('NextPage','//div[@class="nav-next"]/a/@href')
+
+        #response.xpath('//div[@class="entry-content"]/p[count(a)=0 and not( contains(.,//a))]')
+        #response.xpath('//a[contains(.,"Next")]/@href').get()
+
         chapter.add_value('Number',self.chapterNumber)
         chapter = chapter.load_item()
 
@@ -35,10 +37,10 @@ class Serial(scrapy.Spider):
 
         yield chapter
         self.chapterNumber += 1
-        # 
-        # if 'NextPage' in chapter:
-        #     if chapter['NextPage'] is not self.endUrl:
-        #         yield scrapy.Request(chapter['NextPage'], self.parse)
+        #
+        if 'NextPage' in chapter:
+            if chapter['NextPage'] is not self.endUrl:
+                yield scrapy.Request(chapter['NextPage'], self.parse)
 
     def setHeader(self,title):
         if 'chapter' in title.lower():
