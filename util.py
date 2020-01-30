@@ -1,5 +1,6 @@
 import json
-
+import os
+import logging
 class Settings:
 
     filename = 'config.json'
@@ -31,12 +32,19 @@ class Settings:
         return filename
 
     def getStartUrl(self):
-        startPage = ''
+        startPages = []
         if 'startingPage' in self.configData:
             startPage = self.configData['startingPage']
-        if startPage is '':
+            if type(startPage) is list:
+                startPages =  startPage
+            elif startPage is '':
+                logging.error('No Starting URL Given!')
+                return startPages
+            else:
+                startPages.append(startPage)
+        if not startPages:
             logging.error('No Starting URL Given!')
-        return startPage
+        return startPages
 
     def getTitle(self):
         title = ''
@@ -53,3 +61,33 @@ class Settings:
         if authors is '':
             logging.error('No Authors Given!')
         return authors
+
+    def getBookDir(self):
+        bookDir = ''
+        if 'bookDir' in self.configData:
+            bookDir = self.configData['bookDir']
+        if bookDir is '':
+            logging.error('No Book Dir Given!')
+            bookDir = 'Books'
+
+        dirPath = os.path.join(os.path.dirname(__file__),bookDir)
+        if not os.path.exists(dirPath):
+            os.makedirs(dirPath)
+        return dirPath
+
+    def getHtmlDir(self):
+        htmlDir = ''
+        if 'htmlDir' in self.configData:
+            htmlDir = self.configData['htmlDir']
+        if htmlDir is '':
+            logging.error('No html Dir Given!')
+            htmlDir = 'ScrapedPages'
+        return htmlDir
+
+    def getHTMLFilePath(self,fileName):
+        htmlDir = self.getHtmlDir()
+        dirPath = os.path.join(os.path.dirname(__file__),htmlDir)
+        if not os.path.exists(dirPath):
+            os.makedirs(dirPath)
+
+        return os.path.join(dirPath,fileName)

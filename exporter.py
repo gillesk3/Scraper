@@ -1,10 +1,11 @@
 from scrapy.exporters import BaseItemExporter
 from util import Settings
 import logging
+import os
 
 class HTMLItemExporter(BaseItemExporter):
 
-
+    baseDir = 'ScrapedPages'
 
     def predendToFile(self,line):
         line =  (line.rstrip('\r\n') + '\n').encode('utf-8')
@@ -21,7 +22,8 @@ class HTMLItemExporter(BaseItemExporter):
         else: self.filename = self.settings.getFilename()
 
     def start_exporting(self):
-        self.file =  open(self.filename, 'wb+')
+        self.filePath = self.settings.getHTMLFilePath(self.filename)
+        self.file =  open(self.filePath, 'wb+')
         logging.debug("opening file")
 
     def finish_exporting(self,spider):
