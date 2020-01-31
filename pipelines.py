@@ -6,7 +6,7 @@ class HTMLWriterPipeline(object):
 
 
     def open_spider(self, spider):
-        self.exporter = HTMLItemExporter()
+        self.exporter = HTMLItemExporter(spider.filename)
         self.exporter.start_exporting()
         # self.file = open('items.jl', 'w')
 

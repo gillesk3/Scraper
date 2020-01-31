@@ -11,19 +11,25 @@ process = CrawlerProcess({
     'pipelines.HTMLWriterPipeline': 800}
 })
 
-settings = Settings()
-htmlFileName = settings.getFilename()
-htmlFilePath = settings.getHTMLFilePath(htmlFileName)
+
+htmlFileName = 'testing.html'
+authors = ''
+title = ''
+
+
+# settings = Settings()
+# htmlFileName = settings.getFilename()
+htmlFilePath = Settings().getHTMLFilePath(htmlFileName)
 mobiFileName =  htmlFileName.split('.')[0] + ".mobi"
-bookDir = settings.getBookDir()
+bookDir = Settings().getBookDir()
 mobiFilePath = os.path.join(bookDir,mobiFileName)
-authors = settings.getAuthors()
-title = settings.getTitle()
+# authors = settings.getAuthors()
+# title = settings.getTitle()
 
 convertQuery = 'ebook-convert {} {} --authors "{}" --title "{}" --max-toc-links 500'.format(htmlFilePath, mobiFilePath, authors, title)
 
 
-process.crawl(EvilSpider)
+process.crawl(EvilSpider, start_urls=['https://practicalguidetoevil.wordpress.com/2017/02/08/prologue-3/'],filename=htmlFileName )
 process.start() # the script will block here until the crawling is finished
 # logging.debug(convertQuery)
-os.system(convertQuery)
+# os.system(convertQuery)

@@ -22,7 +22,7 @@ class HTMLItemExporter(BaseItemExporter):
         else: self.filename = self.settings.getFilename()
 
     def start_exporting(self):
-        self.filePath = self.settings.getHTMLFilePath(self.filename)
+        self.filePath = Settings().getHTMLFilePath(self.filename)
         self.file =  open(self.filePath, 'wb+')
         logging.debug("opening file")
 

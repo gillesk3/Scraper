@@ -9,19 +9,25 @@ import logging
 class EvilSpider(scrapy.Spider):
     name = 'serial'
     settings = Settings()
-    start_urls = settings.getStartUrl()
     endUrl = 'https://practicalguidetoevil.wordpress.com/2017/02/08/prologue-3/'
     chapterNumber = 0
     tableOfContents = "<h1>Table of Contents</h1>"
+
+
+
+    def __init__(self, category='', **kwargs):
+        if 'start_urls' in kwargs:
+            self.start_urls = kwargs['start_urls']
+        if 'filename' in kwargs:
+            self.filename = kwargs['filename']
+
+        super().__init__(**kwargs)  # python3
 
     def parse(self, response):
         chapter = ItemLoader(item=Chapter(), response=response)
         chapter.add_xpath('Title', '//h1[@class="entry-title"]/text()')
         chapter.add_xpath('Content',  '//div[@class="entry-content"]/p[count(a)=0 and not( contains(.,//a))]/text()')
         chapter.add_xpath('NextPage','//a[contains(.,"Next")]/@href')
-
-        #response.xpath('//div[@class="entry-content"]/p[count(a)=0 and not( contains(.,//a))]')
-        #response.xpath('//a[contains(.,"Next")]/@href').get()
 
         chapter.add_value('Number',self.chapterNumber)
         chapter = chapter.load_item()
@@ -35,7 +41,7 @@ class EvilSpider(scrapy.Spider):
 
         yield chapter
         self.chapterNumber += 1
-        #
+
         if 'NextPage' in chapter:
             if chapter['NextPage'] is not self.endUrl:
                 yield scrapy.Request(chapter['NextPage'], self.parse)

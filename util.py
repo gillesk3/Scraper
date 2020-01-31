@@ -62,6 +62,14 @@ class Settings:
             logging.error('No Authors Given!')
         return authors
 
+    @staticmethod
+    def getBookDir():
+        bookDir = 'Books'
+        dirPath = os.path.join(os.path.dirname(__file__),bookDir)
+        if not os.path.exists(dirPath):
+            os.makedirs(dirPath)
+        return dirPath
+
     def getBookDir(self):
         bookDir = ''
         if 'bookDir' in self.configData:
@@ -75,6 +83,7 @@ class Settings:
             os.makedirs(dirPath)
         return dirPath
 
+
     def getHtmlDir(self):
         htmlDir = ''
         if 'htmlDir' in self.configData:
@@ -86,6 +95,15 @@ class Settings:
 
     def getHTMLFilePath(self,fileName):
         htmlDir = self.getHtmlDir()
+        dirPath = os.path.join(os.path.dirname(__file__),htmlDir)
+        if not os.path.exists(dirPath):
+            os.makedirs(dirPath)
+
+        return os.path.join(dirPath,fileName)
+
+    @staticmethod
+    def getHTMLFilePath(fileName):
+        htmlDir = 'ScrapedPages'
         dirPath = os.path.join(os.path.dirname(__file__),htmlDir)
         if not os.path.exists(dirPath):
             os.makedirs(dirPath)
