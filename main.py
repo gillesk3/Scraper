@@ -12,24 +12,25 @@ process = CrawlerProcess({
 })
 
 
-htmlFileName = 'testing.html'
-authors = ''
-title = ''
+# htmlFileName = 'testing.html'
+# authors = ''
+# title = ''
 
 
-# settings = Settings()
-# htmlFileName = settings.getFilename()
+settings = Settings()
+htmlFileName = settings.getFilename()
 htmlFilePath = Settings().getHTMLFilePath(htmlFileName)
 mobiFileName =  htmlFileName.split('.')[0] + ".mobi"
 bookDir = Settings().getBookDir()
 mobiFilePath = os.path.join(bookDir,mobiFileName)
-# authors = settings.getAuthors()
-# title = settings.getTitle()
+authors = settings.getAuthors()
+title = settings.getTitle()
+startPage = settings.getStartUrl()
+endPage = settings.configData['endingPage']
+cover = settings.configData['cover']
+convertQuery = f'ebook-convert {htmlFilePath} {mobiFilePath} --authors "{authors}" --cover {cover} --title "{title}" --max-toc-links 500'
 
-convertQuery = 'ebook-convert {} {} --authors "{}" --title "{}" --max-toc-links 500'.format(htmlFilePath, mobiFilePath, authors, title)
-
-
-process.crawl(EvilSpider, start_urls=['https://practicalguidetoevil.wordpress.com/2017/02/08/prologue-3/'],filename=htmlFileName )
+process.crawl(EvilSpider, start_urls=startPage,filename=htmlFileName, endUrl='endPage' )
 process.start() # the script will block here until the crawling is finished
 # logging.debug(convertQuery)
-# os.system(convertQuery)
+os.system(convertQuery)

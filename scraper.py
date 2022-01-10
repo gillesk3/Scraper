@@ -9,7 +9,7 @@ import logging
 class EvilSpider(scrapy.Spider):
     name = 'serial'
     settings = Settings()
-    endUrl = 'https://practicalguidetoevil.wordpress.com/2017/02/08/prologue-3/'
+    endUrl = ''
     chapterNumber = 0
     tableOfContents = "<h1>Table of Contents</h1>"
 
@@ -20,6 +20,8 @@ class EvilSpider(scrapy.Spider):
             self.start_urls = kwargs['start_urls']
         if 'filename' in kwargs:
             self.filename = kwargs['filename']
+        if 'enendUrl' in kwargs:
+            self.endUrl = kwargs['enendUrl']
 
         super().__init__(**kwargs)  # python3
 
