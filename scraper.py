@@ -28,7 +28,8 @@ class EvilSpider(scrapy.Spider):
     def parse(self, response):
         chapter = ItemLoader(item=Chapter(), response=response)
         chapter.add_xpath('Title', '//h1[@class="entry-title"]/text()')
-        chapter.add_xpath('Content',  '//div[@class="entry-content"]/p[count(a)=0 and not( contains(.,//a))]/text()')
+        # chapter.add_xpath('Content',  '//div[@class="entry-content"]/p[count(a)=0 and not( contains(.,//a))]/text()')
+        chapter.add_xpath('Content',  '//div[@class="entry-content"]/p')
         chapter.add_xpath('NextPage','//a[contains(.,"Next")]/@href')
 
         chapter.add_value('Number',self.chapterNumber)
