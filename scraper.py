@@ -30,13 +30,13 @@ class EvilSpider(scrapy.Spider):
         chapter.add_xpath('Title', '//h1[@class="entry-title"]/text()')
         # chapter.add_xpath('Content',  '//div[@class="entry-content"]/p[count(a)=0 and not( contains(.,//a))]/text()')
         chapter.add_xpath('Content',  '//div[@class="entry-content"]/p')
-        chapter.add_xpath('NextPage','//a[contains(.,"Next")]/@href')
+        chapter.add_xpath('NextPage','//a[@rel="next"]/@href')
 
         chapter.add_value('Number',self.chapterNumber)
         chapter = chapter.load_item()
 
 
-        if 'prologue' in chapter['Title'].lower() and self.chapterNumber is not 0:
+        if 'prologue' in chapter['Title'].lower() and self.chapterNumber != 0:
             return
 
         chapter['Header'] =   self.setHeader(chapter['Title'])
@@ -48,6 +48,9 @@ class EvilSpider(scrapy.Spider):
         if 'NextPage' in chapter:
             if chapter['NextPage'] is not self.endUrl:
                 yield scrapy.Request(chapter['NextPage'], self.parse)
+        else:
+            print('no next page')
+
 
     def setHeader(self,title):
         if 'chapter' in title.lower():
