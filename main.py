@@ -32,9 +32,9 @@ book =settings.getBook()
 endPage = settings.configData[book]['end']
 startPage = [settings.configData[book]['start']]
 
-convertQuery = f'ebook-convert {htmlFilePath} {mobiFilePath} --authors "{authors}" --cover {cover} --title "{title}" --max-toc-links 500'
+convertQuery = f'ebook-convert {htmlFilePath} {mobiFilePath} --authors "{authors}" --cover {cover} --title "{title}" --max-toc-links 0'
 
-#process.crawl(EvilSpider, start_urls=startPage,filename=htmlFileName, endUrl=endPage )
-#process.start() # the script will block here until the crawling is finished
+process.crawl(EvilSpider, start_urls=startPage,filename=htmlFileName, endUrl=endPage )
+process.start() # the script will block here until the crawling is finished
 # logging.debug(convertQuery)
 os.system(convertQuery)

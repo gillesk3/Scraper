@@ -1,5 +1,5 @@
 {
-  "book": "pale",
+  "book": "evil7",
   "startingPage": "https://practicalguidetoevil.wordpress.com/2015/11/04/prologue-2/", "endingPage": "https://practicalguidetoevil.wordpress.com/2017/02/08/reign/",
   "worm": { "start":  "https://parahumans.wordpress.com/2011/06/11/1-1/", "end": "https://parahumans.wordpress.com/2015/03/10/moving-on/","cover": "./Covers/worm.jpg"
     ,"authors": "Wildbow",  "filename": "worm.html","title": "Worm"},
@@ -8,6 +8,30 @@
   "evil1": { "start":  "https://practicalguidetoevil.wordpress.com/2015/03/25/prologue/", "end": "https://practicalguidetoevil.wordpress.com/2015/11/04/prologue-2/",  "cover": "./Covers/Evil.jpg"
     ,"authors": "Erratic",  "filename": "evil1.html","title": "A Practical Guide To Evil Book 1"
   },
+    "evil2": { "start":  "https://practicalguidetoevil.wordpress.com/2015/11/04/prologue-2/", "end": "https://practicalguidetoevil.wordpress.com/2017/02/08/prologue-3/",  "cover": "./Covers/Evil.jpg"
+    ,"authors": "Erratic",  "filename": "evil2.html","title": "A Practical Guide To Evil Book 2"
+  },
+      "evil3": { "start":  "https://practicalguidetoevil.wordpress.com/2017/02/08/prologue-3/", "end": "https://practicalguidetoevil.wordpress.com/2018/04/09/prologue-4/",  "cover": "./Covers/Evil.jpg"
+    ,"authors": "Erratic",  "filename": "evil3.html","title": "A Practical Guide To Evil Book 3"
+  },
+      "evil4": { "start":  "https://practicalguidetoevil.wordpress.com/2018/04/09/prologue-4/", "end": "https://practicalguidetoevil.wordpress.com/2019/01/14/prologue-5/",  "cover": "./Covers/Evil.jpg"
+    ,"authors": "Erratic",  "filename": "evil4.html","title": "A Practical Guide To Evil Book 4"
+  },
+      "evil5": { "start":  "https://practicalguidetoevil.wordpress.com/2019/01/14/prologue-5/", "end": "https://practicalguidetoevil.wordpress.com/2020/01/06/prologue-6/",  "cover": "./Covers/Evil.jpg"
+    ,"authors": "Erratic",  "filename": "evil5.html","title": "A Practical Guide To Evil Book 5"
+  },
+      "evil6": { "start":  "https://practicalguidetoevil.wordpress.com/2020/01/06/prologue-6/", "end": "https://practicalguidetoevil.wordpress.com/2021/03/02/prologue-7/",  "cover": "./Covers/Evil.jpg"
+    ,"authors": "Erratic",  "filename": "evil6.html","title": "A Practical Guide To Evil Book 6"
+  },
+        "evil7": { "start":  "https://practicalguidetoevil.wordpress.com/2020/01/06/prologue-6/", "end": "https://practicalguidetoevil.wordpress.com/2022/02/26/ending-announcements/",  "cover": "./Covers/Evil.jpg"
+    ,"authors": "Erratic",  "filename": "evil7.html","title": "A Practical Guide To Evil Book 7"
+  },
 
+    "pale1": { "start":  "https://palewebserial.wordpress.com/2020/05/05/blood-run-cold-0-0/", "end": "https://palewebserial.wordpress.com/2021/08/03/summer-break-13-1/","cover": "./Covers/Pale.jpg"
+    ,"authors": "Wildbow",  "filename": "pale1.html","title": "Pale Part 1"},
+    "pale2": { "start":  "https://palewebserial.wordpress.com/2021/08/03/summer-break-13-1/", "end": "https://palewebserial.wordpress.com/2022/08/02/let-slip-20-1/","cover": "./Covers/Pale.jpg"
+    ,"authors": "Wildbow",  "filename": "pale2.html","title": "Pale Part 2"},
+    "pale3": { "start":  "https://palewebserial.wordpress.com/2022/08/02/let-slip-20-1/", "end": "https://palewebserial.wordpress.com/2023/10/10/end/","cover": "./Covers/Pale.jpg"
+    ,"authors": "Wildbow",  "filename": "pale3.html","title": "Pale Part 3"},
   "bookDir": "Books", "htmlDir": "ScrapedPages"
 }
