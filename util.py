@@ -5,12 +5,14 @@ class Settings:
 
     filename = 'config.json'
     configData = None
+    book = ''
 
     def __init__(self,filename=None):
         if filename:
             self.filename = filename
         with open(self.filename) as f:
             self.configData = json.load(f)
+            self.book = self.getBook()
 
     def saveSetting(self,key,value):
         with open(self.filename) as json_file:
@@ -24,8 +26,8 @@ class Settings:
 
     def getFilename(self):
         filename = ''
-        if 'filename' in self.configData:
-            filename = self.configData['filename']
+        if 'filename' in  self.configData[self.book]:
+            filename =  self.configData[self.book]['filename']
         if filename is '':
             logging.error('No Output File Given!')
             return 'unknown.html'
@@ -48,16 +50,30 @@ class Settings:
 
     def getTitle(self):
         title = ''
-        if 'title' in self.configData:
-            title = self.configData['title']
+        if 'title' in self.configData[self.book]:
+            title = self.configData[self.book]['title']
         if title is '':
             logging.error('No Title Given!')
         return title
 
+    def getCover(self):
+        cover = ''
+        if 'cover' in self.configData[self.book]:
+            cover = self.configData[self.book]['cover']
+        if cover is '':
+            logging.error('No Cover Given!')
+        return cover
+
+    def getBook(self):
+        if 'book' in self.configData:
+            book = self.configData['book']
+            return book
+        raise ValueError("No book set")
+
     def getAuthors(self):
         authors = ''
-        if 'authors' in self.configData:
-            authors = self.configData['authors']
+        if 'authors' in self.configData[self.book]:
+            authors = self.configData[self.book]['authors']
         if authors is '':
             logging.error('No Authors Given!')
         return authors

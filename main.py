@@ -15,22 +15,26 @@ process = CrawlerProcess({
 # htmlFileName = 'testing.html'
 # authors = ''
 # title = ''
+book = 'evil1'
 
 
 settings = Settings()
 htmlFileName = settings.getFilename()
 htmlFilePath = Settings().getHTMLFilePath(htmlFileName)
-mobiFileName =  htmlFileName.split('.')[0] + ".mobi"
+mobiFileName =  htmlFileName.split('.')[0] + ".epub"
 bookDir = Settings().getBookDir()
 mobiFilePath = os.path.join(bookDir,mobiFileName)
 authors = settings.getAuthors()
+cover = settings.getCover()
 title = settings.getTitle()
-startPage = settings.getStartUrl()
-endPage = settings.configData['endingPage']
-cover = settings.configData['cover']
+#startPage = settings.getStartUrl()
+book =settings.getBook()
+endPage = settings.configData[book]['end']
+startPage = [settings.configData[book]['start']]
+
 convertQuery = f'ebook-convert {htmlFilePath} {mobiFilePath} --authors "{authors}" --cover {cover} --title "{title}" --max-toc-links 500'
 
-process.crawl(EvilSpider, start_urls=startPage,filename=htmlFileName, endUrl='endPage' )
-process.start() # the script will block here until the crawling is finished
+#process.crawl(EvilSpider, start_urls=startPage,filename=htmlFileName, endUrl=endPage )
+#process.start() # the script will block here until the crawling is finished
 # logging.debug(convertQuery)
 os.system(convertQuery)

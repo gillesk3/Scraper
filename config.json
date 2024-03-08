@@ -1,6 +1,13 @@
 {
-  "filename": "evil3.html","title": "Evil 3", "authors": "Erratic"  ,
-  "startingPage": ["https://practicalguidetoevil.wordpress.com/2015/11/04/prologue-2/"], "endingPage": "https://practicalguidetoevil.wordpress.com/2017/02/08/reign/",
-  "bookDir": "Books", "htmlDir": "ScrapedPages",
-  "cover": "C:/Users/gille/PycharmProjects/Scraper/ScrapedPages/Evil.jpeg"
+  "book": "pale",
+  "startingPage": "https://practicalguidetoevil.wordpress.com/2015/11/04/prologue-2/", "endingPage": "https://practicalguidetoevil.wordpress.com/2017/02/08/reign/",
+  "worm": { "start":  "https://parahumans.wordpress.com/2011/06/11/1-1/", "end": "https://parahumans.wordpress.com/2015/03/10/moving-on/","cover": "./Covers/worm.jpg"
+    ,"authors": "Wildbow",  "filename": "worm.html","title": "Worm"},
+  "pale": { "start":  "https://palewebserial.wordpress.com/2020/05/05/blood-run-cold-0-0/", "end": "https://palewebserial.wordpress.com/2023/10/10/end/","cover": "./Covers/Pale.jpg"
+    ,"authors": "Wildbow",  "filename": "pale.html","title": "Pale"},
+  "evil1": { "start":  "https://practicalguidetoevil.wordpress.com/2015/03/25/prologue/", "end": "https://practicalguidetoevil.wordpress.com/2015/11/04/prologue-2/",  "cover": "./Covers/Evil.jpg"
+    ,"authors": "Erratic",  "filename": "evil1.html","title": "A Practical Guide To Evil Book 1"
+  },
+
+  "bookDir": "Books", "htmlDir": "ScrapedPages"
 }
